@@ -1,1 +1,3 @@
-{}
+{
+  "tests/test_fln.py::test_sample_rev_fln": true
+}

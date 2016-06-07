@@ -2,8 +2,11 @@
 tests constructing of reverse fln hash
 """
 
-import build_reverse_fln
+from tools import build_reverse_fln
 
+# to make module importable: pip install -e . 
+    # in the main directory
+    # -e flag ensures changes are reflected in import
 
 sample_fln = {'a': 'b', 'b': 'c', 'd': 'a', 'e': 'a'} 
 correct_rev_fln = {'a': ['d', 'e'], 'b': ['a'], 'c': ['b'], 'd': [], 'e': []}

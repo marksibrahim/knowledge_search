@@ -1,0 +1,30 @@
+Metadata-Version: 1.0
+Name: knowledge-search
+Version: 1.0
+Summary: UNKNOWN
+Home-page: https://github.com/marksibrahim/knowledge_search
+Author: Mark Ibrahim
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: # Knowledge Search
+        a knowledge search engine
+        
+        
+        # Development
+        
+        ## Build Network 
+        Goal: process xml dump into a hash table
+        
+        * benchmark stream process
+            * 54 hours to process entire XML (see benchmark_streamking.ipynb)
+        * distribute computation via HDFS and Spark
+            * consider alternatives
+        
+        
+        
+        
+        
+        
+        
+        
+Platform: UNKNOWN
