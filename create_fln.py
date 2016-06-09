@@ -1,3 +1,9 @@
+import json
+from pyspark.sql import SQLContext
+sqlContext = SQLContext(sc)
+
+
+
 """
 parse page text for first link
 
@@ -11,12 +17,12 @@ entire dump is https://dumps.wikimedia.org/enwiki/20141008/
 6. find first link 
     * eliminating outermost false links:
         *Image, wiktionary etc.
-first level of hierachy is check whether {{}}
-    proceed to ()
-    then test link
-    link
 """
 
+#first level of hierachy is check whether {{}}
+    #proceed to ()
+    #then test link
+    #link
 
 def inside_char(char, marker, tracker, i):
     #checks whether inside char such as parentheses or wiki_template
@@ -118,3 +124,11 @@ def run_parser(page_xml):
             return clean_link(link)
     return None
 
+# load data into Spark DataFrame (runtime < 1min)
+df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').load("s3a://wiki-xml-dump/sample_dump.xml")
+
+fln_df = dict(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
+
+# write dict to json file
+with open("sample_fln.json", "w") as f:
+        json.dump(fln_dict, f)
