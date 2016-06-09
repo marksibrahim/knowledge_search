@@ -1,5 +1,10 @@
 import json
+
+from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext
+
+conf = SparkConf().setAppName("build fln")
+sc = SparkContext(conf=conf)
 sqlContext = SQLContext(sc)
 
 
@@ -127,8 +132,18 @@ def run_parser(page_xml):
 # load data into Spark DataFrame (runtime < 1min)
 df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').load("s3a://wiki-xml-dump/sample_dump.xml")
 
-fln_df = dict(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
+fln_dict = dict(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
 
 # write dict to json file
 with open("sample_fln.json", "w") as f:
-        json.dump(fln_dict, f)
+    json.dump(fln_dict, f)
+
+
+"""
+To Submit Spark Job:
+spark-submit 
+--packages com.databricks:spark-xml_2.10:0.3.3 
+--master spark://master-node-dns:7077  
+--executor-memory 6400M --driver-memory 6400M 
+Knowledge_search/create_fln.py
+"""
