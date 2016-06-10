@@ -3,7 +3,9 @@ import json
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext
 
-conf = SparkConf().setAppName("build fln")
+# block transfer overcomes known error with netty network handler
+conf = SparkConf().setAppName("build fln").set("spark.shuffle.blockTransferService", "nio") 
+
 sc = SparkContext(conf=conf)
 sqlContext = SQLContext(sc)
 
@@ -130,12 +132,12 @@ def run_parser(page_xml):
     return None
 
 # load data into Spark DataFrame (runtime < 1min)
-df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').load("s3a://wiki-xml-dump/sample_dump.xml")
+df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').load("s3a://wiki-xml-dump/enwiki-20160407.xml")
 
 fln_dict = dict(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
 
 # write dict to json file
-with open("sample_fln.json", "w") as f:
+with open("raw_data/fln.json", "w") as f:
     json.dump(fln_dict, f)
 
 
