@@ -125,14 +125,20 @@ def clean_link(link):
     return link 
 
 def run_parser(page_xml):
-    links = grab_links(page_xml)
-    for link in links:
-        if check_link(link):
-            return clean_link(link)
-    return None
+    try:
+        links = grab_links(page_xml)
+        for link in links:
+            if check_link(link):
+                return clean_link(link)
+        return None
+    except:
+        return None
 
 # load data into Spark DataFrame (runtime < 1min)
-df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').load("s3a://wiki-xml-dump/enwiki-20160407.xml")
+sample_xml = "s3a://wiki-xml-dump/sample_dump.xml"
+full_xml = "s3a://wiki-xml-dump/enwiki-20160407.xml"
+
+df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').load(full_xml)
 
 fln_dict = dict(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
 
