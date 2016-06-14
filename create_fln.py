@@ -143,7 +143,7 @@ df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').l
 fln_dict = dict(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
 
 # write dict to json file
-with open("raw_data/fln.json", "w") as f:
+with open("fln.json", "w") as f:
     json.dump(fln_dict, f)
 
 

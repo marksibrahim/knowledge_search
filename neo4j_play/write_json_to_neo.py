@@ -38,3 +38,10 @@ tx.create(ab)
 tx.commit()
 g.exists(ab)
 """
+
+
+"""
+SAMPLE Query
+MATCH (a:Article)-[:LINKS_TO]-(neighbors) 
+WHERE a.title="A" RETURN a, neighbors
+"""
