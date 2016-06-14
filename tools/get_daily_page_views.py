@@ -5,6 +5,7 @@ combines hourly page views into a single csv on S3
 import pandas as pd
 import urllib
 import datetime
+import csv
 
 def build_df(year, month, day, hour):
     """
@@ -26,7 +27,7 @@ def build_df(year, month, day, hour):
     opener.retrieve(url_string, file_name)
     
     # return data frame
-    df = pd.read_csv(file_name, compression="gzip", sep=" ", 
+    df = pd.read_csv(file_name, compression="gzip", sep=" ", quoting=csv.QUOTE_NONE,
                  error_bad_lines=False, header=None)
     df.columns = ['project', 'article', 'views', 'content_returned']
     # include only en-wiki
@@ -74,3 +75,7 @@ if __name__ == "__main__":
         df_combined = combine_dataframes(df1_df2, df_existing)
 
         df_combined.to_csv(year + month + day + "_views.csv")
+
+# TODO:
+    # clean directory
+    # transfer to s3
