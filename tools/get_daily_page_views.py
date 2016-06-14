@@ -6,6 +6,7 @@ import pandas as pd
 import urllib
 import datetime
 import csv
+import os
 
 def build_df(year, month, day, hour):
     """
@@ -33,6 +34,9 @@ def build_df(year, month, day, hour):
     # include only en-wiki
     df = df[df['project'] == 'en']
     df = df[['article', 'views']]
+
+    # remove gz file
+    os.remove(file_name)
     
     return df
 
@@ -75,7 +79,3 @@ if __name__ == "__main__":
         df_combined = combine_dataframes(df1_df2, df_existing)
 
         df_combined.to_csv(year + month + day + "_views.csv")
-
-# TODO:
-    # clean directory
-    # transfer to s3
