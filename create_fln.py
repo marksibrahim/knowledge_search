@@ -1,5 +1,4 @@
-import json
-
+import pandas as pd
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext
 
@@ -140,12 +139,10 @@ full_xml = "s3a://wiki-xml-dump/enwiki-20160407.xml"
 
 df = sqlContext.read.format('com.databricks.spark.xml').options(rowTag='page').load(full_xml)
 
-fln_dict = dict(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
+fln_pandas_df = pd.DataFrame(df.select("title", "revision").map(lambda s: (s[0], run_parser(s[1].text[0]))).collect())
 
-# write dict to json file
-with open("fln.json", "w") as f:
-    json.dump(fln_dict, f)
-
+fln_pandas_df.columns = [':START_ID(Article)', ':END_ID(Article)']
+fln_pandas_df.to_csv('fln.csv', encoding='utf-8', index=False)
 
 """
 To Submit Spark Job:
