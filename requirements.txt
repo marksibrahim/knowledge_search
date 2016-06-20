@@ -1,0 +1,2 @@
+-e git+https://github.com/marksibrahim/knowledge_search@fded6aea3ec94fb11d01c0f9be0f69461e0aeb38#egg=knowledge_search
+py2neo==3
