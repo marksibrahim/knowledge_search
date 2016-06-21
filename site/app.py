@@ -20,6 +20,6 @@ def my_form_post():
     return "\n".join(result_list)
 
 if __name__ == '__main__':
-    app.run()
+	app.run(host="0.0.0.0", port=5000)
 
 
