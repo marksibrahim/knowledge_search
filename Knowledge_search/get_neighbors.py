@@ -41,8 +41,10 @@ class Network():
         query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
         query += "USING INDEX a:Article(title) RETURN n.title "
         query += "LIMIT 3"
-        result = self.g.run(query, x=self.parent_article).evaluate()
-        return result
+        results_list = []
+        for record in self.g.run(query, x=self.parent_article):
+            results_list.append(record["n.title"])
+        return results_list
 
     def get_child_articles(self):
         """
@@ -52,6 +54,22 @@ class Network():
         query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
         query += "USING INDEX a:Article(title) RETURN n.title "
         query += "LIMIT 7"
-        result = self.g.run(query, x=self.article).evaluate()
-        return result
+        result = self.g.run(query, x=self.article)
+        results_list = []
+        for record in result:
+            results_list.append(record["n.title"])
+        return results_list
         
+    def get_experiment(self):
+        """
+        returns a list of child nodes 
+        (detailed topics linking to the article)
+        """
+        query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
+        query += "USING INDEX a:Article(title) RETURN n.title "
+        query += "LIMIT 7"
+        result = self.g.run(query, x=self.article)
+        results_list = []
+        for record in result:
+            results_list.append(record["n.title"])
+        return results_list
