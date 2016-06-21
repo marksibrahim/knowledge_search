@@ -1,4 +1,9 @@
--e git+https://github.com/marksibrahim/knowledge_search@a5757b3dd09fc15a7c17533c17463286cc3eb995#egg=knowledge_search
+click==6.6
+Flask==0.11.1
+itsdangerous==0.24
+Jinja2==2.8
+-e git+https://github.com/marksibrahim/knowledge_search@47198db988bc921ebd52f3f41a826caf6f28bb1d#egg=knowledge_search
+MarkupSafe==0.23
 numpy==1.11.0
 pandas==0.18.1
 py==1.4.31
@@ -7,3 +12,4 @@ pytest==2.9.2
 python-dateutil==2.5.3
 pytz==2016.4
 six==1.10.0
+Werkzeug==0.11.10
