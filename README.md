@@ -1,25 +1,25 @@
 # Knowledge Search
 a graph-based knowledge search engine powered by Wikipedia
 
+search here: http://knowledgesearch.us/
+
 
 # Development
 
-## Build Network 
-Goal: process xml dump into a hash table
+1. Parse the Wikipedia XML dump into article and its first link (in the main body text).
 
-* benchmark stream process
-    * 54 hours to process entire XML (see benchmark_streamking.ipynb)
-* distribute computation via HDFS and Spark
-    * 2.5 hours on 8 node cluster 
+* processing is distributed using Spark DataFrames
+    * DataBricks XML package is used to delineate a page: 
+    https://github.com/databricks/spark-xml
 
-## Get Page Views 
-* aggregate daily page view dumps into a single csv
+2. Store Network in Neo4j
+* encodes all 9 million articles (5 million articles + 4 million redirects) and the relationships among them
+ 
+3. Run Queries on Neo4j 
+* index articles by title and add page views as a property of each article 
+    * query can filter resutls by page views to return the most relevant articles
 
-
-## Store in Graph Database
-
-* neo4j encodes relationship among articles and associates a number of page views with each
-
+Extension: Elasticsearch to enhance matching between a search term and the relevant article.  
 
 
 
