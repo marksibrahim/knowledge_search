@@ -1,4 +1,8 @@
+import datetime
+import operator
+import six
 from py2neo import Graph, authenticate
+from mwviews.api import PageviewsClient
 
 temp_pass = "neo4j1"
 
@@ -6,6 +10,10 @@ temp_pass = "neo4j1"
 class Network():
     """
     connects and queries the first link network stored in Neo4j
+        returns subset of neighbors based on page views 
+
+    run using Python 3 to avoid utf-8 errors during the views api call
+    TODO: debug New York
     """
 
     def __init__(self, article):
@@ -40,11 +48,10 @@ class Network():
         """
         query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
         query += "USING INDEX a:Article(title) RETURN n.title "
-        query += "LIMIT 3"
         results_list = []
         for record in self.g.run(query, x=self.parent_article):
             results_list.append(record["n.title"])
-        return results_list
+        return self.top_articles_by_views(results_list, 3)
 
     def get_child_articles(self):
         """
@@ -53,23 +60,41 @@ class Network():
         """
         query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
         query += "USING INDEX a:Article(title) RETURN n.title "
-        query += "LIMIT 7"
         result = self.g.run(query, x=self.article)
         results_list = []
         for record in result:
             results_list.append(record["n.title"])
-        return results_list
+        return self.top_articles_by_views(results_list, 7)
+
+
+    def top_articles_by_views(self, articles, top_x):
+        """
+        returns the top x of the given list of articles
+            based on page views for the previous month
+            output:
+                [(article1, views), (article2, views)]
+        """
+        p = PageviewsClient()
+
+        # create date string based on previous month
+        now = datetime.datetime.now()
+        previous_month = str(now.month - 1).zfill(2)
+        if previous_month == "00": previous_month = "12"
+        start_date = str(now.year) + previous_month + "0100"
+        end_date = str(now.year) + previous_month + "2800"
+
+        # get views
+        result = p.article_views('en.wikipedia', articles, 
+                granularity='monthly', start=start_date, end=end_date)
+        # clean results (six is used for backwards compatibility with python 2
+        result = six.next(six.itervalues(result))
+        sorted_articles = sorted(result.items(), 
+                key=operator.itemgetter(1), reverse=True)
+        return sorted_articles[:top_x]
         
-    def get_experiment(self):
-        """
-        returns a list of child nodes 
-        (detailed topics linking to the article)
-        """
-        query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
-        query += "USING INDEX a:Article(title) RETURN n.title "
-        query += "LIMIT 7"
-        result = self.g.run(query, x=self.article)
-        results_list = []
-        for record in result:
-            results_list.append(record["n.title"])
-        return results_list
+
+
+
+
+
+        
