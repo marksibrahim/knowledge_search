@@ -19,6 +19,10 @@ def my_form_post():
     result_list = get_neighbors.Network(text).child_articles
     return "\n".join(result_list)
 
+@app.route('/better')
+def better():
+    return render_template("better.html")
+
 if __name__ == '__main__':
 	app.run(host="0.0.0.0", port=5000)
 

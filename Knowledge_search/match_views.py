@@ -8,12 +8,15 @@ import re
 
 def convert_title(title):
     """returns url formatted title based on display title"""
-    title
-    split_case = ' '.join([x.strip() for x in re.findall('[A-Z][^A-Z]*', title)])
-    correct_case = split_case.lower()
-    url_encoded = urllib.quote(correct_case, safe=' ')
-    url_title = url_encoded.replace(" ", "_")
-    return url_title
+    try: 
+        split_case = ' '.join([x.strip() for x in re.findall('[A-Z][^A-Z]*', title)])
+        correct_case = split_case.lower()
+        url_encoded = urllib.quote(correct_case, safe=' ')
+        url_title = url_encoded.replace(" ", "_")
+        return url_title
+    except TypeError:
+        # skip titles interpreted as dates or floats
+        return " "
 
 def check_index(title):
     return title in clean_views_df.index
@@ -25,11 +28,11 @@ def get_views(title):
 
 if __name__ == "__main__":
     # load data
-    views_path = "/home/ubuntu/20160613_views.csv"
+    views_path = "/Users/mark/Desktop/temp_data/20160613_views.csv"
     views_df = pd.read_csv(views_path, encoding='utf-8', 
             usecols=['article', 'views'], index_col="article")
 
-    fln_path = "/home/ubuntu/fln.csv"
+    fln_path = "/Users/mark/Desktop/temp_data/fln.csv"
     fln_df = pd.read_csv(fln_path, index_col=":START_ID(Article)", 
             usecols=[":START_ID(Article)"])
 
