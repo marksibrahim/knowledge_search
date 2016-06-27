@@ -74,7 +74,7 @@ class Network():
             output:
                 [(article1, views), (article2, views)]
         """
-        p = PageviewsClient()
+        p = PageviewsClient(10)
 
         # create date string based on previous month
         now = datetime.datetime.now()
@@ -83,6 +83,8 @@ class Network():
         start_date = str(now.year) + previous_month + "0100"
         end_date = str(now.year) + previous_month + "2800"
 
+        # encode in ascii for compatibility with page views api 
+        articles = [article.encode("ascii", 'ignore') for article in articles]
         # get views
         result = p.article_views('en.wikipedia', articles, 
                 granularity='monthly', start=start_date, end=end_date)
