@@ -1,8 +1,4 @@
-import datetime
-import operator
-import six
 from py2neo import Graph, authenticate
-from mwviews.api import PageviewsClient
 
 temp_pass = "neo4j1"
 
