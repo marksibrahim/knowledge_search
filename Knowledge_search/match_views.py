@@ -28,13 +28,13 @@ def get_views(title):
 
 if __name__ == "__main__":
     # load data
-    views_path = "/Users/mark/Desktop/temp_data/20160613_views.csv"
-    #views_path = "/home/ubuntu/20160613_views.csv"
+    #views_path = "/Users/mark/Desktop/temp_data/20160613_views.csv"
+    views_path = "/home/ubuntu/20160613_views.csv"
     views_df = pd.read_csv(views_path, encoding='utf-8', 
             usecols=['article', 'views'], index_col="article")
 
-    fln_path = "/Users/mark/Desktop/temp_data/fln.csv"
-    #fln_path = "/home/ubuntu/fln.csv"
+    #fln_path = "/Users/mark/Desktop/temp_data/fln.csv"
+    fln_path = "/home/ubuntu/fln.csv"
     fln_df = pd.read_csv(fln_path, 
             usecols=[":START_ID(Article)", ":END_ID(Article)"])
 
