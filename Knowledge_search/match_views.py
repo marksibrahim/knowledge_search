@@ -47,7 +47,14 @@ if __name__ == "__main__":
     # match page view data
     fln_df['lower_title'] = fln_df.index.map(convert_title)
     fln_df['views'] = fln_df['lower_title'].map(get_views)
+    
+    # clean duplicates and quotes
+    fln_df.index.rename("title:ID(Article)", inplace=True)
+    fln_df = fln_df.reset_index()
+    fln_df = fln_df.drop_duplicates(['title:ID(Article)'])
+    fln_df = fln_df[fln_df['title:ID(Article)'].str.contains("\"") == False]
 
     # save 
-    fln_df['views'].to_csv("fln_views.csv", encoding='utf-8', index=True, header=True)
+    fln_df[['title:ID(Article)', 'views']].to_csv("fln_views.csv", 
+            encoding='utf-8', index=False, header=True)
 
