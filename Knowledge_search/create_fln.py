@@ -22,12 +22,15 @@ if __name__ == "__main__":
     fln_pandas_df = pd.DataFrame(df.select("title", "revision").map(lambda s: (s[0],Article(s[1].text[0]).first_link)).collect())
 
     fln_pandas_df.columns = [":START_ID(Article)", ":END_ID(Article)"]
-    # clean duplicates and NA
+
+    # clean duplicates, commans and NA
     fln_pandas_df = fln_pandas_df.drop_duplicates(":START_ID(Article)").dropna()
+    fln_df[":START_ID(Article)"] = fln_df[":START_ID(Article)"].str.replace(',', ' ')
+    fln_df[":END_ID(Article)"] = fln_df[":END_ID(Article)"].str.replace(',', ' ')
     fln_pandas_df.to_csv('fln.csv', encoding='utf-8', index=False)
 
     # nodes list dataframe
-    fln_series = fln_df[':START_ID(Article)'].append(fln_df[":END_ID(Article)"]).drop_duplicates()
+    fln_series = fln_df[':START_ID(Article)'].append(fln_df[":END_ID(Article)"]).drop_duplicates().dropna()
     fln_series.to_csv("fln_series.csv", encoding='utf-8', index=False, header=True)
 
 
