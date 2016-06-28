@@ -10,18 +10,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def my_form():
-    return render_template("index.html")
+    return render_template("better.html")
 
 @app.route('/', methods=['POST'])
 def my_form_post():
+    title = request.form['title']
+    node = get_neighbors.Network(title)
+    parent = node.parent_article[0]
+    comprable = ", ".join([article[0] for article in node.comprable_articles])
+    #return node.child_articles[0][0]
+    children = ", ".join([article[0] for article in node.child_articles])
+    return render_template("response.html", parent=parent,
+            comprable=comprable, children=children)
 
-    text = request.form['text']
-    result_list = get_neighbors.Network(text).child_articles
-    return "\n".join(result_list)
-
-@app.route('/better')
-def better():
-    return render_template("better.html")
 
 if __name__ == '__main__':
 	app.run(host="0.0.0.0", port=5000)
