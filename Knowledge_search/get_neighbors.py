@@ -6,7 +6,6 @@ from mwviews.api import PageviewsClient
 
 temp_pass = "neo4j1"
 
-
 class Network():
     """
     connects and queries the first link network stored in Neo4j
@@ -38,20 +37,27 @@ class Network():
         returns article's the first link 
         """
         query = "MATCH (a:Article {title:{x}})-[r:FL_TO]->(n) "
-        query += "USING INDEX a:Article(title) RETURN n.title"
-        result = self.g.run(query, x=self.article).evaluate()
-        return result
+        query += "USING INDEX a:Article(title) RETURN n.title "
+        query += "LIMIT 1;"
+        title = self.g.run(query, x=self.article).evaluate()
+
+        query = "MATCH (a:Article {title:{x}})-[r:FL_TO]->(n) "
+        query += "USING INDEX a:Article(title) RETURN n.views "
+        query += "LIMIT 1;"
+        views = self.g.run(query, x=self.article).evaluate()
+        return (title, views)
 
     def get_comprable_articles(self):
         """
         returns a list of articles linking to the same parent node
         """
         query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
-        query += "USING INDEX a:Article(title) RETURN n.title "
+        query += "USING INDEX a:Article(title) RETURN DISTINCT n "
+        query += "ORDER BY n.views DESC LIMIT 3;"
         results_list = []
-        for record in self.g.run(query, x=self.parent_article):
-            results_list.append(record["n.title"])
-        return self.top_articles_by_views(results_list, 3)
+        for record in self.g.run(query, x=self.parent_article[0]):
+            results_list.append((record[0]["title"], record[0]["views"]))
+        return results_list
 
     def get_child_articles(self):
         """
@@ -59,44 +65,11 @@ class Network():
         (detailed topics linking to the article)
         """
         query = "MATCH (n)-[r:FL_TO]->(a: Article {title: {x}}) "
-        query += "USING INDEX a:Article(title) RETURN n.title "
+        query += "USING INDEX a:Article(title) RETURN DISTINCT n "
+        query += "ORDER BY n.views DESC LIMIT 5;"
         result = self.g.run(query, x=self.article)
         results_list = []
         for record in result:
-            results_list.append(record["n.title"])
-        return self.top_articles_by_views(results_list, 7)
+            results_list.append((record[0]["title"], record[0]["views"]))
+        return results_list
 
-
-    def top_articles_by_views(self, articles, top_x):
-        """
-        returns the top x of the given list of articles
-            based on page views for the previous month
-            output:
-                [(article1, views), (article2, views)]
-        """
-        p = PageviewsClient(10)
-
-        # create date string based on previous month
-        now = datetime.datetime.now()
-        previous_month = str(now.month - 1).zfill(2)
-        if previous_month == "00": previous_month = "12"
-        start_date = str(now.year) + previous_month + "0100"
-        end_date = str(now.year) + previous_month + "2800"
-
-        # encode in ascii for compatibility with page views api 
-        articles = [article.encode("ascii", 'ignore') for article in articles]
-        # get views
-        result = p.article_views('en.wikipedia', articles, 
-                granularity='monthly', start=start_date, end=end_date)
-        # clean results (six is used for backwards compatibility with python 2
-        result = six.next(six.itervalues(result))
-        sorted_articles = sorted(result.items(), 
-                key=operator.itemgetter(1), reverse=True)
-        return sorted_articles[:top_x]
-        
-
-
-
-
-
-        
