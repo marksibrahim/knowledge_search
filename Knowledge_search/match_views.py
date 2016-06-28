@@ -35,8 +35,8 @@ if __name__ == "__main__":
 
     fln_path = "/Users/mark/Desktop/temp_data/fln.csv"
     #fln_path = "/home/ubuntu/fln.csv"
-    fln_df = pd.read_csv(fln_path, index_col=":START_ID(Article)", 
-            usecols=[":START_ID(Article)"])
+    fln_df = pd.read_csv(fln_path, 
+            usecols=[":START_ID(Article)", ":END_ID(Article)"]
 
     # clean titles and duplicates in views data
     views_df['lower_title'] = views_df.index.str.lower()
@@ -46,15 +46,15 @@ if __name__ == "__main__":
     dd_views.columns = ['views', 'lower_title']
     clean_views_df = dd_views.set_index(["lower_title"])
 
-    # match page view data
-    fln_df['lower_title'] = fln_df.index.map(convert_title)
-    fln_df['views'] = fln_df['lower_title'].map(get_views)
-    
-    # clean duplicates and quotes
-    fln_df.index.rename("title:ID(Article)", inplace=True)
-    fln_df = fln_df.reset_index()
-    fln_df = fln_df.drop_duplicates(['title:ID(Article)'])
+    # combine titles in both columns
+    fln_df = pd.DataFrame(fln_df[":START_ID(Article)"].append(fln_df[":END_ID(Article)"]).drop_duplicates())
+    fln_df.columns = ['title:ID(Article']
+    # clean quotes
     fln_df = fln_df[fln_df['title:ID(Article)'].str.contains("\"") == False]
+
+    # match page view data
+    fln_df['lower_title'] = fln_df['title:ID(Article)'].map(convert_title)
+    fln_df['views'] = fln_df['lower_title'].map(get_views)
 
     # save 
     fln_df[['title:ID(Article)', 'views']].to_csv("fln_views.csv", 
