@@ -36,7 +36,7 @@ if __name__ == "__main__":
     fln_path = "/Users/mark/Desktop/temp_data/fln.csv"
     #fln_path = "/home/ubuntu/fln.csv"
     fln_df = pd.read_csv(fln_path, 
-            usecols=[":START_ID(Article)", ":END_ID(Article)"]
+            usecols=[":START_ID(Article)", ":END_ID(Article)"])
 
     # clean titles and duplicates in views data
     views_df['lower_title'] = views_df.index.str.lower()
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     # combine titles in both columns
     fln_df = pd.DataFrame(fln_df[":START_ID(Article)"].append(fln_df[":END_ID(Article)"]).drop_duplicates())
-    fln_df.columns = ['title:ID(Article']
+    fln_df.columns = ['title:ID(Article)']
     # clean quotes
     fln_df = fln_df[fln_df['title:ID(Article)'].str.contains("\"") == False]
 
