@@ -50,8 +50,7 @@ if __name__ == "__main__":
     fln_df = pd.DataFrame(fln_df[":START_ID(Article)"].append(fln_df[":END_ID(Article)"]).drop_duplicates())
     fln_df.columns = ['title:ID(Article)']
     # clean quotes and commas
-    fln_df = fln_df[fln_df['title:ID(Article)'].str.contains("\"") == False \
-            | fln_df['title:ID(Article)'].str.contains(",") == False]
+    fln_df = fln_df[fln_df['title:ID(Article)'].str.contains("\" | ,") == False] 
 
     # match page view data
     fln_df['lower_title'] = fln_df['title:ID(Article)'].map(convert_title)
