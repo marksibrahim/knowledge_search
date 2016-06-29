@@ -4,29 +4,39 @@ import json
 
 es = Elasticsearch()
 
-doc = {
-    'author': 'kimchy',
-    'text': 'Elasticsearch: cool. bonsai cool.',
-    'timestamp': datetime.now(),
+doc1 = {
+    'title': 'Banana',
+    'body_text': 'A banana is a fruit of the botanical family banana',
 }
 
-# load sample wiki json
-with open("sample_wiki.json") as f:
-    sample_wiki = json.load(f)
+doc2 = {
+    'title': 'Orange',
+    'body_text': 'An Orange is a fruit of the botanical family similar to banana',
+}
 
+doc3 = {
+    'title': 'Train',
+    'body_text': 'A train is a form of rail transport',
+}
 
-res = es.index(index="test-index", doc_type='article', id=1, body=sample_wiki)
+docs = [doc1, doc2, doc3]
 
-res = es.get(index="test-index", doc_type='article', id=1)
-print(res['_source'])
+# index documents
+for i, doc in enumerate(docs):
+    es.index(index="my_index", doc_type='article', id=i, body=doc)
 
+# search for term
+    # note title^2 means words in title are weighted twice as heavily in search
+search_term = "banana"
 
-es.search(index="test-index"
-"""
-es.indices.refresh(index="test-index")
+res = es.search(index="my_index", body={"query": {
+    "multi_match": {
+          "fields":  [ "body_text", "title^2" ],
+                 "query": search_term,
+                 "fuzziness": "AUTO",
+                  } } })
 
-res = es.search(index="test-index", body={"query": {"match_all": {}}})
-print("Got %d Hits:" % res['hits']['total'])
+# show result
 for hit in res['hits']['hits']:
-    print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
-"""
+    print hit['_source']
+   
