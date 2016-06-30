@@ -39,4 +39,3 @@ res = es.search(index="my_index", body={"query": {
 # show result
 for hit in res['hits']['hits']:
     print hit['_source']
-   
