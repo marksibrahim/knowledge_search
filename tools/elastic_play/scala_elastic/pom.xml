@@ -26,6 +26,13 @@
             <version>2.3.2</version>
         </dependency>
 </dependencies>
+<dependency>
+            <groupId>com.databricks</groupId>
+            <artifactId>spark-xml_2.10</artifactId>
+            <version>0.3.3</version>
+        </dependency>
+</dependencies>
+
 
 <build>
 		<plugins>
