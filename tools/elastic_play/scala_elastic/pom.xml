@@ -16,6 +16,11 @@
 <dependencies>
 
 <dependency>
+   <groupId>org.apache.spark</groupId>
+   <artifactId>spark-sql_2.10</artifactId>
+   <version>1.6.1</version>
+</dependency>
+<dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch-spark_2.10</artifactId>
             <version>2.3.2</version>

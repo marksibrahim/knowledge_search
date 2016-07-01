@@ -1,6 +1,7 @@
 package my_wiki
 
 import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SQLContext._
 
 object WikiIndex {
     def main(args: Array[String]): Unit = {
