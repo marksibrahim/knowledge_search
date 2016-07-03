@@ -28,6 +28,7 @@ object WikiIndex {
         val sqlContext = new SQLContext(sc)
         val df = sqlContext.read.format("com.databricks.spark.xml").option("rowTag", "page").load("s3a://wiki-xml-dump/sample_dump.xml")
         val map_df = df.select("title", "revision").map(article => Map("title " -> article(0)))
+        val ten_titles = map_df.take(10).foreach(println)
 
         /** Elastic Search Job Settings     
         val appConfiguration = ConfigFactory.load()
@@ -44,7 +45,7 @@ object WikiIndex {
         FileOutputFormat.setOutputPath(jobConfiguration, new Path(appConfiguration.getString("/home/ubuntu/elasticsearch-2.3.3/config")))
         */
 
-        map_df.saveToEs("wiki_index/article")
+        map_df.saveToEs("wiki_test_index/article")
 
         /* saveToEs("test_index") */
 
@@ -53,7 +54,7 @@ object WikiIndex {
         /* val punc_df = transformed_df.map(t_a => t_a.replaceAll("""[\p{Punct}&&[^:]]""", " ")).first() */
         println("########################################")
         println("########################################")
-        /* println(map_df) */
+        /* println(ten_titles) */
         println("########################################")
         println("########################################")
 
