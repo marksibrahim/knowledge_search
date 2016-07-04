@@ -1,14 +1,12 @@
 from py2neo import Graph, authenticate
 import os
+import configs
 
 
 class Network():
     """
     connects and queries the first link network stored in Neo4j
         returns subset of neighbors based on page views 
-
-    run using Python 3 to avoid utf-8 errors during the views api call
-    TODO: debug New York
     """
 
     def __init__(self, article):

@@ -1,9 +1,12 @@
 click==6.6
+elasticsearch==2.3.0
 Flask==0.11.1
+futures==3.0.5
 itsdangerous==0.24
 Jinja2==2.8
--e git+https://github.com/marksibrahim/knowledge_search@47198db988bc921ebd52f3f41a826caf6f28bb1d#egg=knowledge_search
+-e git+https://github.com/marksibrahim/knowledge_search@3634715d5c7559feb57583c671b6ad41146f3c9b#egg=knowledge_search
 MarkupSafe==0.23
+mwviews==0.0.8
 numpy==1.11.0
 pandas==0.18.1
 py==1.4.31
@@ -11,5 +14,7 @@ py2neo==3
 pytest==2.9.2
 python-dateutil==2.5.3
 pytz==2016.4
+requests==2.10.0
 six==1.10.0
+urllib3==1.16
 Werkzeug==0.11.10
