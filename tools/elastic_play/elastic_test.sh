@@ -11,6 +11,10 @@ curl -s -XPOST 'localhost:9200/my_test/article/2' -d '{
 curl 'localhost:9200/my_test/_search?q=dog&pretty'
 curl 'ec2-52-204-244-120.compute-1.amazonaws.com:9200/wiki_test_index/_search?q=AccessibleComputing&pretty'
 
+# delete index
+curl -XDELETE 'ec2-52-204-244-120.compute-1.amazonaws.com:9200/wiki_test_index/'
+
+curl 'ec2-52-73-6-251.compute-1.amazonaws.com:9200/wiki_sample_index/_search?q=AccessibleComputing&pretty'
 # or in this style
 echo "second style query result:"
 curl 'localhost:9200/my_test/_search?pretty' -d '{  
