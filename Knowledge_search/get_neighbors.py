@@ -1,6 +1,6 @@
 from py2neo import Graph, authenticate
+import os
 
-temp_pass = "neo4j1"
 
 class Network():
     """
@@ -20,8 +20,8 @@ class Network():
             child_articles (details)
         """
         # connect to database
-        authenticate("52.204.244.120:7474", "neo4j", temp_pass)
-        self.g = Graph("http://52.204.244.120:7474/db/data/")
+        authenticate(os.environ["neo4j_ip"] + ":7474", "neo4j", os.environ["neo4j_pass"])
+        self.g = Graph("http://" + os.environ["neo4j_ip"]+ ":7474/db/data/")
 
         self.article = article
         self.parent_article = self.get_parent_article() 
