@@ -23,23 +23,26 @@ class TestNetwork():
     tests how the first link network is created 
     based an xml dump of articles
     """
-    def test_New_York_neighbors(self):
-        New_York = get_neighbors.Network("New York")
-        assert New_York.parent_article[0] == "U.S. state"
-        child_articles = [a[0] for a in New_York.child_articles]
-        assert "Michael Rockefeller" in child_articles
-        assert "Cynthia Carr" in child_articles
-        comprable_articles = [a[0] for a in New_York.comprable_articles]
-        assert "Wisconsin" in comprable_articles
+    def test_light_neighbors(self):
+        piano = get_neighbors.Network("light")
+        assert piano.parent_article[0] == "electromagnetic radiation"
 
-    def test_Banana(self):
-        Banana = get_neighbors.Network("Banana")
-        child_articles = [a[0] for a in Banana.child_articles]
-        assert "Banana plant" in child_articles
-        assert Banana.parent_article[0] == "fruit"
+        child_articles = [a[0] for a in piano.child_articles]
+        assert "Light Wave" in child_articles
+        assert "Visible Light" in child_articles
 
-        comprable_articles = [a[0] for a in Banana.comprable_articles]
-        assert "Chili powder" in comprable_articles
+        comprable_articles = [a[0] for a in piano.comprable_articles]
+        assert "Sunlight" in comprable_articles
+
+    def test_piano_neighbors(self):
+        piano = get_neighbors.Network("Piano")
+        assert piano.parent_article[0] == "musical instrument"
+
+        child_articles = [a[0] for a in piano.child_articles]
+        assert "Grand Piano" in child_articles
+
+        comprable_articles = [a[0] for a in piano.comprable_articles]
+        assert "Violin family" in comprable_articles
 
     def test_page_views(self):
         """
@@ -59,6 +62,16 @@ class TestNetwork():
         es = Elasticsearch([os.environ["elasticsearch_node_dns"] + ":9200"])
         result = es.search(index="wiki_index", body={"query": {"match_all": {}}})
         assert float(result['hits']['total']) > 1000
+
+    def test_fuzzy_title_matching(self):
+        """
+        tests whether a generic term is matched to a title
+        """
+        # lower-case computer should be matched to Computers
+        assert get_neighbors.Network("computer").article == "Computers"
+
+        
+
 
 
 

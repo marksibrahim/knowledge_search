@@ -1,5 +1,8 @@
 from elasticsearch import Elasticsearch
-es = Elasticsearch([os.environ["elasticsearch_node_dns" + ":9200"])
+import os
+from Knowledge_search import configs
+
+es = Elasticsearch([os.environ["elasticsearch_node_dns"] + ":9200"])
 
 search_term = "computer"
 
