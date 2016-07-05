@@ -3,8 +3,14 @@ a graph-based knowledge search engine powered by Wikipedia
 
 [knowledgesearch.us](http://knowledgesearch.us/)
 
+* [Connecting Every Article in a Graph](#Connecting-Articles-in-a-Graph)
+* (#Graph Implementation)
+* (#Fuzzy Title Matching)
+* (#Application)
+* (#Setup)
 
-## Connecting Every Article in a Graph
+
+## Connecting Articles in a Graph
 
 The first link in the main body text identifies a hierarchical relationship between articles: banana links to fruit, piano to musical instruments, and so on. The search engine constructs a directed graph connecting the 11 million English articles (6 million redirects) using the first link. For those curious about the network's topology, feel free to peek at the [research](compstorylab.org/share/papers/ibrahim2016a/index.html) inspiring this project.
 
@@ -39,9 +45,33 @@ In addition to the graph, the first 2000 characters of the main body text is als
    * build jar using maven and run scala (see pom.xm and index_wiki.scala)
 * elastic search query weighs the title 2x compared to the body text with elasticsearches fuzzy matching
 
+Example: 
+"paper" --> "Pulp (paper)"
+
+* lower-case paper is matched to the correct article title. 
+
 ## Application
 
 A search term is matched to the closest title based on the elasticsearch query above. It is then translated into a neo4j query using get_neighbors.py, which returns the parent, comparable, and child articles in a network view.
+
+## Setup
+
+To install dependencies:
+```
+pip install requirements.txt
+```
+
+For distributed computations, the program also requires Spark, Java > 7, and Scala.
+
+Program expects configurations in **configs.py** which sets environment variables for database and spark nodes:
+```python
+import os
+
+os.environ["master_node_dns"] = "ec2-xx-xx-xx.compute-1.amazonaws.com"
+os.environ["elasticsearch_node_dns"] = "ec2-xx-xx-xx.compute-1.amazonaws.com"
+os.environ["neo4j_pass"] = "xxxx"
+os.environ["neo4j_ip"] = "xx.xxx.xx"
+```
 
 
 
