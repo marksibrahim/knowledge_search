@@ -55,8 +55,8 @@ In addition to the graph, the first 2000 characters of the main body text are in
 ## <a name="Setup"></a>Setup
 
 To install dependencies:
-```
-pip install requirements.txt
+```bash
+pip install -r requirements.txt
 ```
 
 For distributed computations, the program also requires Spark, Java > 7, and Scala.
