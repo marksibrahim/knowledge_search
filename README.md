@@ -1,4 +1,4 @@
-# Knowledge Search [d3_net](tools/logos/d3_net.jpeg)
+# Knowledge Search ![d3_net](tools/logos/d3_net.jpeg)
 > a graph-based knowledge search engine powered by Wikipedia
 
 [knowledgesearch.us](http://knowledgesearch.us/)
