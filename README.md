@@ -4,13 +4,12 @@ a graph-based knowledge search engine powered by Wikipedia
 [knowledgesearch.us](http://knowledgesearch.us/)
 
 * [Connecting Every Article in a Graph](#Connecting-Articles-in-a-Graph)
-* (#Graph Implementation)
 * (#Fuzzy Title Matching)
 * (#Application)
-* (#Setup)
+* [Setup](#Setup)
 
 
-## Connecting Articles in a Graph
+## <a name="Connecting-Articles-in-a-Graph"></a> Connecting Articles in a Graph
 
 The first link in the main body text identifies a hierarchical relationship between articles: banana links to fruit, piano to musical instruments, and so on. The search engine constructs a directed graph connecting the 11 million English articles (6 million redirects) using the first link. For those curious about the network's topology, feel free to peek at the [research](compstorylab.org/share/papers/ibrahim2016a/index.html) inspiring this project.
 
@@ -54,7 +53,7 @@ Example:
 
 A search term is matched to the closest title based on the elasticsearch query above. It is then translated into a neo4j query using get_neighbors.py, which returns the parent, comparable, and child articles in a network view.
 
-## Setup
+## <a name="Setup"></a>Setup
 
 To install dependencies:
 ```
