@@ -4,9 +4,11 @@ a graph-based knowledge search engine powered by Wikipedia
 [knowledgesearch.us](http://knowledgesearch.us/)
 
 * [Connecting Every Article in a Graph](#Connecting-Articles-in-a-Graph)
-* (#Fuzzy Title Matching)
-* (#Application)
+   * [Graph Implementation](#Graph-Implementation)
+* [Fuzzy Title Matching](#Fuzzy-Title-Matching)
 * [Setup](#Setup)
+* [Application](#Application)
+
 
 
 ## <a name="Connecting-Articles-in-a-Graph"></a> Connecting Articles in a Graph
@@ -21,7 +23,7 @@ Parent | Comparable | Children
 musical instruments | Music box, Violin family, Glass harmonica | Piano Music, Piano music, Grand Piano, Lily Maisky, William Merrigan Daly
 
 
-### Graph Implementation
+### <a name="Graph-Implementation"></a> Graph Implementation
 
 1. Download entire XML dump available here: https://dumps.wikimedia.org/enwiki/
 2. Extract the first link in the main body text (get_first_link.py)
@@ -35,7 +37,7 @@ musical instruments | Music box, Violin family, Glass harmonica | Piano Music, P
 
 note matching titles between available hourly page view data and the display title extracted from the XML is imperfect (see math_views.py)
 
-## Fuzzy Title Matching
+## <a name="Fuzzy-Title-Matching"></a>Fuzzy Title Matching
 
 In addition to the graph, the first 2000 characters of the main body text is also indexed for fuzzy title searching.
 * powered by elasticsearch <a href="https://www.elastic.co/" rel="knowledge search"><img src="https://github.com/marksibrahim/knowledge_search/blob/master/tools/logos/elasticsearch.png" width="30"></a>
@@ -48,11 +50,6 @@ Example:
 "paper" --> "Pulp (paper)"
 
 * lower-case paper is matched to the correct article title. 
-
-## Application
-
-A search term is matched to the closest title based on the elasticsearch query above. It is then translated into a neo4j query using get_neighbors.py, which returns the parent, comparable, and child articles in a network view.
-
 ## <a name="Setup"></a>Setup
 
 To install dependencies:
@@ -71,6 +68,12 @@ os.environ["elasticsearch_node_dns"] = "ec2-xx-xx-xx.compute-1.amazonaws.com"
 os.environ["neo4j_pass"] = "xxxx"
 os.environ["neo4j_ip"] = "xx.xxx.xx"
 ```
+
+## <a name="Application"></a>Application
+
+A search term is matched to the closest title based on the elasticsearch query above. It is then translated into a neo4j query using get_neighbors.py, which returns the parent, comparable, and child articles in a network view.
+
+
 
 
 
