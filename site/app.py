@@ -20,7 +20,7 @@ def my_form_post():
     comprable = ", ".join([article[0] for article in node.comprable_articles])
     #return node.child_articles[0][0]
     children = ", ".join([article[0] for article in node.child_articles])
-    return render_template("new_response.html", article=node.article, parent=parent,
+    return render_template("d3_response.html", article=node.article, parent=parent,
             comprable=comprable, children=children)
 
 if __name__ == '__main__':
