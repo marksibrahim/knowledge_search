@@ -41,8 +41,7 @@ In addition to the graph, the first 2000 characters of the main body text is als
 
 ## Application
 
-A search term is matched to the closest title based on the elasticsearch query above. It is then translated into a neo4j query using get_neighbors.py, 
-which returns the parent, comparable, adn child articles in a network view.
+A search term is matched to the closest title based on the elasticsearch query above. It is then translated into a neo4j query using get_neighbors.py, which returns the parent, comparable, and child articles in a network view.
 
 
 
