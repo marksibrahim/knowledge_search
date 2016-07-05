@@ -15,7 +15,7 @@ a graph-based knowledge search engine powered by Wikipedia
 
 The first link in the main body text identifies a hierarchical relationship between articles: *banana* links to *fruit*, *piano* to *musical instruments*, and so on. 
 
-The search engine constructs a directed graph connecting the 11 million English articles (6 million redirects) using the first link. For those curious about the network's topology, peek at the [research](compstorylab.org/share/papers/ibrahim2016a/index.html) inspiring this project.
+The search engine constructs a directed graph connecting the 11 million English articles (6 million redirects) using the first link. For those curious about the network's topology, peek at the [research](http://compstorylab.org/share/papers/ibrahim2016a/index.html) inspiring this project.
 
 > Example: **Piano**
 
@@ -43,8 +43,8 @@ musical instruments | Music box, Violin family, Glass harmonica | Piano Music, P
 In addition to the graph, the first 2000 characters of the main body text are indexed for fuzzy title searching.
 * <a href="https://www.elastic.co/" rel="knowledge search"><img src="https://github.com/marksibrahim/knowledge_search/blob/master/tools/logos/elasticsearch.png" width="30"></a> powered by Elasticsearch 
 * indexing is distributed using Scala  
-   * note PySpark Databricks XMl package and EsSpark (connector from Spark to Elasticsearch) are not compatible
-   * build jar using Maven and run Scala (see pom.xm and index_wiki.scala)
+   * note PySpark Databricks XML package and EsSpark (connector from Spark to Elasticsearch) are not compatible
+   * build jar using Maven and run Scala (see pom.xml and index_wiki.scala)
 * Elasticsearch query weighs the title 2x more heavily realtive to introductory body text
 
 > Example: 
@@ -79,10 +79,4 @@ Flow based on search term:
 * filter the subgraph by page views to return only the most relevant subset 
 
 The front-end serves this result in a directed D3 graph.
-
-
-
-
-
-
 
