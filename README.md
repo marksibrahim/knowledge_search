@@ -1,5 +1,6 @@
-# Knowledge Search ![d3_net](tools/logos/d3_net.jpeg)
-> a graph-based knowledge search engine powered by Wikipedia
+# Knowledge Search
+<a href="http://knowledgesearch.us/" rel="knowledge search">![d3_net](tools/logos/d3_net.png)</a>
+a graph-based knowledge search engine powered by Wikipedia
 
 [knowledgesearch.us](http://knowledgesearch.us/)
 
