@@ -1,17 +1,17 @@
 from py2neo import Graph, authenticate
+from elasticsearch import Elasticsearch
+import os
+import configs
 
-temp_pass = "neo4j1"
+
 
 class Network():
     """
     connects and queries the first link network stored in Neo4j
         returns subset of neighbors based on page views 
-
-    run using Python 3 to avoid utf-8 errors during the views api call
-    TODO: debug New York
     """
 
-    def __init__(self, article):
+    def __init__(self, search_term):
         """
         authenticates connection to the graph database
         and stores article neighbors as
@@ -19,14 +19,33 @@ class Network():
             comprable_articles
             child_articles (details)
         """
-        # connect to database
-        authenticate("52.204.244.120:7474", "neo4j", temp_pass)
-        self.g = Graph("http://52.204.244.120:7474/db/data/")
+        # connect to databases: neo4j and elasticsearch
+        authenticate(os.environ["neo4j_ip"] + ":7474", "neo4j", os.environ["neo4j_pass"])
+        self.g = Graph("http://" + os.environ["neo4j_ip"]+ ":7474/db/data/")
+        self.es = Elasticsearch([os.environ["elasticsearch_node_dns"] + ":9200"])
 
-        self.article = article
+
+        self.search_term = search_term
+        self.article = self.fuzzy_match_title()
         self.parent_article = self.get_parent_article() 
         self.comprable_articles = self.get_comprable_articles()
         self.child_articles = self.get_child_articles()
+
+    def fuzzy_match_title(self):
+        """
+        returns the title of the Wikipedia article most closely matching
+        the search term
+            based on title and first 2k characters of body text
+            title is weighed 2x in search 
+        """
+        result = self.es.search(index="wiki_index", body={"query": {
+                "multi_match": {
+                  "fields":  [ "body_text", "title^2" ],
+                         "query": self.search_term,
+                         "fuzziness": "AUTO",
+                          } } })
+        return result['hits']['hits'][0]['_source']['title']
+
 
     def get_parent_article(self):
         """
