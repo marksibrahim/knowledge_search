@@ -1,18 +1,19 @@
 # Knowledge Search [d3_net](tools/logos/d3_net.jpeg)
 > a graph-based knowledge search engine powered by Wikipedia
 
-search here: http://knowledgesearch.us/
+[knowledgesearch.us](http://knowledgesearch.us/)
 
 
-## Connecting Every Wikipedia Articles in a Graph
+## Connecting Every Article in a Graph
 
 The first link in the main body text identifies a hierarchical relationship between articles: banana links to fruit, piano to musical instruments, and so on. 
-The search engine uses the first link to construct a directed graph connecting all 11 million English articles (6 million redirects). For those curious about the network's topology see the research inspiring this project: compstorylab.org/share/papers/ibrahim2016a/index.html
+ construct a directed graph connecting all 11 million English articles (6 million redirects). For those curious about the network's topology, feel free to peek at the [research](compstorylab.org/share/papers/ibrahim2016a/index.html) inspiring this project.
 
 
 Example: **Piano**
 
 Parent | Comprable | Children
+--- | --- | ---
 musical instruments | Music box, Violin family, Glass harmonica | Piano Music, Piano music, Grand Piano, Lily Maisky, William Merrigan Daly
 
 
@@ -20,8 +21,7 @@ musical instruments | Music box, Violin family, Glass harmonica | Piano Music, P
 
 1. Download entire XML dump available here: https://dumps.wikimedia.org/enwiki/
 2. Extract the first link in the main body text (get_firstlink.py)
-    * distributed computation using Spark DataFrames
-    (TODO: add pic?)
+    * distributed computation using Spark DataFrames (on an 8-node cluster)
     * DataBricks XML package is used to delineate a page: 
     https://github.com/databricks/spark-xml
 3. Store graph in neo4j 
