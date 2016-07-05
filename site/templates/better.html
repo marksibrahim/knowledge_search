@@ -12,6 +12,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- custom form css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,7 +24,12 @@
     <link href="{{ url_for('static',filename='styles/starter-template.css') }}" rel="stylesheet">
   </head>
 
-  <body>
+  <body style="background: url(static/images/book.jpeg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;">
+
     <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
       <a class="navbar-brand" href="#">Knowledge Search</a>
       <ul class="nav navbar-nav">
@@ -41,12 +48,14 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Enter a Wikipedia Article Title</h1>
-        <p class="lead">case matters</p>
-        <form action="." method="POST">
-            <input type="text" name="title">
-            <input type="submit" name="my-form" value="Send">
-        </form>
+    <form action="." method="POST">
+        <div class="group">      
+          <input type="text" name="title" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Search Knowledge</label>
+        </div>
+      </form>
       </div>
 
     </div><!-- /.container -->

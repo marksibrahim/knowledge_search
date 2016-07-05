@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def my_form():
-    return render_template("better.html")
+    return render_template("new.html")
 
 @app.route('/', methods=['POST'])
 def my_form_post():

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Knowledge Search</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='css/mdb.css')}}" rel="stylesheet">
+
+    <!-- Template styles -->
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!--Navbar-->
+    <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar">
+
+        <!-- Collapse button-->
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <div class="container">
+
+            <!--Collapse content-->
+            <div class="collapse navbar-toggleable-xs" id="collapseEx">
+                <!--Navbar Brand-->
+                <a class="navbar-brand" href="http://knowledgesearch.us/" target="_blank">Knowledge Search</a>
+                <!--Links-->
+                <ul class="nav navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"> About<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Research</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Deck</a>
+                    </li>
+                </ul>
+                <!--Search form
+                <form class="form-inline">
+                    <input class="form-control" type="text" placeholder="Search">
+                </form>
+                -->
+            </div>
+            <!--/.Collapse content-->
+
+        </div>
+
+    </nav>
+    <!--/.Navbar-->
+
+    <!--Mask-->
+    <div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
+            <ul class="">
+                <li>
+                <form class="form-inline waves-effect" style="color: #FFFF;">
+                    <input class="form-control custom_form" style="color: #FFFF;" type="text" placeholder="Search Knowledge">
+                </form>
+                </li>
+                <li>
+                    <p style="font-size: 1.25rem; color:rgba(255, 255, 255, 0.21);">a graph-based search engine powered by Wikipedia</p>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/.Mask-->
+
+    <!--Footer-->
+    <footer class="page-footer center-on-small-only">
+
+        <!--Footer Links-->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!--First column-->
+                <div class="col-md-3 col-md-offset-1">
+                    <h5 class="title">About Knowledge Search</h5>
+                    <p>Material Design (codenamed Quantum Paper) is a design language developed by Google. </p>
+
+                    <p>Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap.</p>
+                </div>
+                <!--/.First column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Second column-->
+                <div class="col-md-2 col-md-offset-1">
+                    <h5 class="title">First column</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Third column-->
+                <div class="col-md-2">
+                    <h5 class="title">Second column</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Third column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Fourth column-->
+                <div class="col-md-2">
+                    <h5 class="title">Third column</h5>
+                    <ul>
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                        <li><a href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <!--/.Fourth column-->
+
+            </div>
+        </div>
+        <!--/.Footer Links-->
+
+        <hr>
+
+        <!--Call to action-->
+        <div class="call-to-action">
+            <h4>Material Design for Bootstrap</h4>
+            <ul>
+                <li>
+                    <h5>Get our UI KIT for free</h5></li>
+                <li><a target="_blank" href="http://mdbootstrap.com/getting-started/" class="btn btn-danger">Sign up!</a></li>
+                <li><a target="_blank" href="http://mdbootstrap.com/material-design-for-bootstrap/" class="btn btn-default">Learn more</a></li>
+            </ul>
+        </div>
+        <!--/.Call to action-->
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2015 Copyright: <a href="http://www.MDBootstrap.com"> MDBootstrap.com </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.2.3.min.js')}}"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/tether.min.js')}}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
+
+
+</body>
+
+</html>

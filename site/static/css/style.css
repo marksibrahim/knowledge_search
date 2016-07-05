@@ -1,0 +1,55 @@
+/* TEMPLATE STYLES */
+
+html,
+body,
+.view {
+    height: 100%;
+}
+
+
+/* Navigation*/
+
+.navbar {
+    background-color: transparent;
+}
+.scrolling-navbar {
+        -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+        transition: background .5s ease-in-out, padding .5s ease-in-out;
+}
+
+.top-nav-collapse {
+    background-color: #1C2331;
+}
+
+footer.page-footer {
+    background-color: #1C2331;
+    margin-top: -1px;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #1C2331;
+    }
+}
+
+
+/*Call to action*/
+
+.flex-center {
+    color: #fff;
+}
+
+.view {
+    background: #3a7bd5; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #3a7bd5 , #3a6073); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #3a7bd5 , #3a6073); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /*        
+    background: url('../img/book.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    */
+}
+
