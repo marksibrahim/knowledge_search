@@ -88,3 +88,31 @@ class Network():
             results_list.append((record[0]["title"], record[0]["views"]))
         return results_list
 
+    def build_json_nodes_views(self):
+        """
+        returns a list of dictionaries with the nodes 
+        and views in d3_plus format:
+            [{"title": "cat", "views": 2}, ..]
+        """
+        nodes = []
+        nodes.append({"title": self.parent_article[0], "views": self.parent_article[1]})
+        for node in self.child_articles:
+            nodes.append({"title": node[0], "views": node[1]})
+        for node in self.comprable_articles:
+            nodes.append({"title": node[0], "views": node[1]})
+        return nodes
+
+    def build_json_node_connections(self):
+        """
+        returns a list of dictionaries with the nodes 
+        and their connections in d3_plus format:
+            [{"source": "cat", "target": "dog"}, ...]
+        """
+        connections = []
+        connections.append({"source": self.article, "target": self.parent_article[0]})
+        for node in self.child_articles:
+            connections.append({"source": node[0], "target":self.article})
+        for node in self.comprable_articles:
+            connections.append({"source": node[0], "target":self.parent_article[0]})
+        return connections
+        

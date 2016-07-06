@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Knowledge Search</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='css/mdb.css')}}" rel="stylesheet">
+
+    <!-- Template styles -->
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!--Navbar-->
+    <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar">
+
+        <!-- Collapse button-->
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <div class="container">
+
+            <!--Collapse content-->
+            <div class="collapse navbar-toggleable-xs" id="collapseEx">
+                <!--Navbar Brand-->
+                <a class="navbar-brand" href="http://knowledgesearch.us/" target="_blank">Knowledge Search</a>
+                <!--Links-->
+                <ul class="nav navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#bottom"> About<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://compstorylab.org/share/papers/ibrahim2016a/index.html">Research</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://markibrahim.me/wiki-search/">Deck</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.Collapse content-->
+
+        </div>
+
+    </nav>
+    <!--/.Navbar-->
+
+    <div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
+            <ul id="viz">
+            </ul>
+        </div>
+    </div>
+    <!--Mask-->
+    <div class="view hm-black-strong">
+        <div class="full-bg-img flex-center">
+
+            <ul>
+                <li>
+                <form class="form-inline waves-effect" style="color: #FFFF;" method="POST">
+                    <input class="form-control" style="color: #FFFF;" type="text" placeholder="Search Knowledge" name="title" autocomplete="off">
+                </form>
+                </li>
+                <li>
+                    <p style="font-size: 1.25rem; color:rgba(255, 255, 255, 0.21);">a graph-based search engine powered by Wikipedia</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--/.Mask-->
+
+    <!--Footer-->
+    <footer class="page-footer center-on-small-only">
+
+        <!--Footer Links-->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!--First column-->
+                <div class="col-md-3 col-md-offset-1">
+                    <h5 class="title">Knowledge Search</h5>
+                    <!--marks bottom for about link in header-->
+                    <a name="bottom">
+                    <p>a graph-based search engine powered by Wikipedia</p>
+
+                </div>
+                <!--/.First column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Second column-->
+                <div class="col-md-2 col-md-offset-1">
+                    <h5 class="title">Research</h5>
+                    <ul>
+                        <li><a href="http://compstorylab.org/share/papers/ibrahim2016a/index.html">Network Topology</a></li>
+                        <li><a href="http://arxiv.org/abs/1605.00309">Paper on arXiv</a></li>
+                    </ul>
+                </div>
+                <!--/.Second column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Third column-->
+                <div class="col-md-2">
+                    <h5 class="title">Github</h5>
+                    <ul>
+                        <li><a href="https://github.com/marksibrahim/knowledge_search"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <!--/.Third column-->
+
+                <hr class="hidden-md-up">
+
+                <!--Fourth column-->
+                <div class="col-md-2">
+                    <h5 class="title">Deck</h5>
+                    <ul>
+                        <li><a href="http://markibrahim.me/wiki-search/"><i class="fa fa-play-circle" aria-hidden="true"></i></a></li>
+                        <li><a href="#!"></a></li>
+                        <li><a href="#!"></a></li>
+                        <li><a href="#!"></a></li>
+                    </ul>
+                </div>
+                <!--/.Fourth column-->
+
+            </div>
+        </div>
+        <!--/.Footer Links-->
+
+        <hr>
+
+        <!--Call to action-->
+        <div class="call-to-action">
+            <ul>
+            </ul>
+        </div>
+        <!--/.Call to action-->
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2016 Copyright: <a href="http://markibrahim.me/"> Mark Ibrahim </a>
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.2.3.min.js')}}"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/tether.min.js')}}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
+
+    <!-- D3 Plus -->
+    <script src="http://www.d3plus.org/js/d3.js"></script>
+    <script src="http://www.d3plus.org/js/d3plus.js"></script>
+
+<!-- D3 Plus Visualization -->
+<script>
+  var sample_data = [
+    {"title": "alpha", "views": 10},
+    {"title": "beta", "views": 12},
+    {"title": "gamma", "views": 30},
+    {"title": "delta", "views": 26},
+    {"title": "epsilon", "views": 12},
+    {"title": "zeta", "views": 26},
+    {"title": "theta", "views": 11},
+    {"title": "eta", "views": 24}
+  ]
+  var real_data = {{ node_views|tojson }};
+
+  var real_connections = {{ real_connections|tojson }};
+
+  var connections = [
+    {"source": "alpha", "target": "beta"},
+    {"source": "alpha", "target": "gamma"},
+    {"source": "beta", "target": "delta"},
+    {"source": "beta", "target": "epsilon"},
+    {"source": "zeta", "target": "gamma"},
+    {"source": "theta", "target": "gamma"},
+    {"source": "eta", "target": "gamma"}
+  ]
+  var visualization = d3plus.viz()
+    .container("#viz")
+    .type("network")
+    .data(real_data)
+    .edges(real_connections)
+    .edges({"arrows": true})
+    .value("views")
+    .color("views")
+    .id("title")
+    .background("rgba(0, 0, 255, 0.0)")
+    .tooltip(["title", "views"])
+    .draw()
+</script>
+
+</body>
+
+</html>
