@@ -60,17 +60,13 @@
     </nav>
     <!--/.Navbar-->
 
-    <div class="view hm-black-strong">
-        <div class="full-bg-img flex-center">
-            <ul id="viz">
-            </ul>
-        </div>
-    </div>
     <!--Mask-->
     <div class="view hm-black-strong">
         <div class="full-bg-img flex-center">
-
-            <ul>
+            <ul class="">
+                <li>
+                    <div id="viz"></div>
+                </li>
                 <li>
                 <form class="form-inline waves-effect" style="color: #FFFF;" method="POST">
                     <input class="form-control" style="color: #FFFF;" type="text" placeholder="Search Knowledge" name="title" autocomplete="off">
@@ -78,6 +74,8 @@
                 </li>
                 <li>
                     <p style="font-size: 1.25rem; color:rgba(255, 255, 255, 0.21);">a graph-based search engine powered by Wikipedia</p>
+                </li>
+                <li>
                 </li>
             </ul>
         </div>
@@ -177,49 +175,6 @@
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
-
-    <!-- D3 Plus -->
-    <script src="http://www.d3plus.org/js/d3.js"></script>
-    <script src="http://www.d3plus.org/js/d3plus.js"></script>
-
-<!-- D3 Plus Visualization -->
-<script>
-  var sample_data = [
-    {"title": "alpha", "views": 10},
-    {"title": "beta", "views": 12},
-    {"title": "gamma", "views": 30},
-    {"title": "delta", "views": 26},
-    {"title": "epsilon", "views": 12},
-    {"title": "zeta", "views": 26},
-    {"title": "theta", "views": 11},
-    {"title": "eta", "views": 24}
-  ]
-  var real_data = {{ node_views|tojson }};
-
-  var real_connections = {{ real_connections|tojson }};
-
-  var connections = [
-    {"source": "alpha", "target": "beta"},
-    {"source": "alpha", "target": "gamma"},
-    {"source": "beta", "target": "delta"},
-    {"source": "beta", "target": "epsilon"},
-    {"source": "zeta", "target": "gamma"},
-    {"source": "theta", "target": "gamma"},
-    {"source": "eta", "target": "gamma"}
-  ]
-  var visualization = d3plus.viz()
-    .container("#viz")
-    .type("network")
-    .data(real_data)
-    .edges(real_connections)
-    .edges({"arrows": true})
-    .value("views")
-    .color("views")
-    .id("title")
-    .background("rgba(0, 0, 255, 0.0)")
-    .tooltip(["title", "views"])
-    .draw()
-</script>
 
 </body>
 
