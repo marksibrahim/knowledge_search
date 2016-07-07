@@ -97,9 +97,13 @@ class Network():
         nodes = []
         nodes.append({"title": self.parent_article[0], "views": self.parent_article[1]})
         for node in self.child_articles:
-            nodes.append({"title": node[0], "views": node[1]})
+            node_views = {"title": node[0], "views": node[1]}
+            if node_views not in nodes:
+                nodes.append(node_views)
         for node in self.comprable_articles:
-            nodes.append({"title": node[0], "views": node[1]})
+            node_views = {"title": node[0], "views": node[1]}
+            if node_views not in nodes:
+                nodes.append(node_views)
         return nodes
 
     def build_json_node_connections(self):
@@ -111,8 +115,12 @@ class Network():
         connections = []
         connections.append({"source": self.article, "target": self.parent_article[0]})
         for node in self.child_articles:
-            connections.append({"source": node[0], "target":self.article})
+            connection = {"source": node[0], "target":self.article}
+            if connection not in connections:
+                connections.append(connection)
         for node in self.comprable_articles:
-            connections.append({"source": node[0], "target":self.parent_article[0]})
+            connection = {"source": node[0], "target":self.parent_article[0]}
+            if connection not in connections:
+                connections.append(connection)
         return connections
         

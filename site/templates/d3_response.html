@@ -39,17 +39,17 @@
             <!--Collapse content-->
             <div class="collapse navbar-toggleable-xs" id="collapseEx">
                 <!--Navbar Brand-->
-                <a class="navbar-brand" href="http://knowledgesearch.us/" target="_blank">Knowledge Search</a>
+                <a class="navbar-brand" href="http://knowledgesearch.us/">Knowledge Search</a>
                 <!--Links-->
                 <ul class="nav navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link" href="#bottom"> About<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://compstorylab.org/share/papers/ibrahim2016a/index.html">Research</a>
+                        <a class="nav-link" href="http://compstorylab.org/share/papers/ibrahim2016a/index.html" target="_blank">Research</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://markibrahim.me/wiki-search/">Deck</a>
+                        <a class="nav-link" href="http://markibrahim.me/wiki-search/" target="_blank">Deck</a>
                     </li>
                 </ul>
             </div>
@@ -107,8 +107,8 @@
                 <div class="col-md-2 col-md-offset-1">
                     <h5 class="title">Research</h5>
                     <ul>
-                        <li><a href="http://compstorylab.org/share/papers/ibrahim2016a/index.html">Network Topology</a></li>
-                        <li><a href="http://arxiv.org/abs/1605.00309">Paper on arXiv</a></li>
+                        <li><a href="http://compstorylab.org/share/papers/ibrahim2016a/index.html" target="_blank">Network Topology</a></li>
+                        <li><a href="http://arxiv.org/abs/1605.00309" target="_blank">Paper on arXiv</a></li>
                     </ul>
                 </div>
                 <!--/.Second column-->
@@ -119,7 +119,7 @@
                 <div class="col-md-2">
                     <h5 class="title">Github</h5>
                     <ul>
-                        <li><a href="https://github.com/marksibrahim/knowledge_search"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                        <li style="text-align: center;"><a href="https://github.com/marksibrahim/knowledge_search" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
                 <!--/.Third column-->
@@ -130,7 +130,7 @@
                 <div class="col-md-2">
                     <h5 class="title">Deck</h5>
                     <ul>
-                        <li><a href="http://markibrahim.me/wiki-search/"><i class="fa fa-play-circle" aria-hidden="true"></i></a></li>
+                        <li style="text-align: center;"><a href="http://markibrahim.me/wiki-search/"><i class="fa fa-play-circle" aria-hidden="true" target="_blank"></i></a></li>
                         <li><a href="#!"></a></li>
                         <li><a href="#!"></a></li>
                         <li><a href="#!"></a></li>
@@ -212,7 +212,7 @@
     .type("network")
     .data(real_data)
     .edges(real_connections)
-    .edges({"arrows": true})
+    .edges({"arrows": 20})
     .value("views")
     .color("views")
     .id("title")

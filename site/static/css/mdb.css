@@ -6800,15 +6800,15 @@ label {
 
 .form-control {
   padding: 0;
-  padding-bottom: 0.6rem;
+  padding-bottom: 1rem;
   padding-top: 0.5rem;
   font-size: 4rem;
-  line-height: 1.5;
+  line-height: 2;
   background-color: transparent;
   background-image: none;
   border-radius: 0;
   margin-top: 0.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .form-control:disabled, .form-control[readonly] {
