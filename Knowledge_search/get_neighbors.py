@@ -95,13 +95,14 @@ class Network():
             [{"title": "cat", "views": 2}, ..]
         """
         nodes = []
-        nodes.append({"title": self.parent_article[0], "views": self.parent_article[1]})
+        nodes.append({"title": self.parent_article[0], "views": self.parent_article[1],
+            "relationship": "parent"})
         for node in self.child_articles:
-            node_views = {"title": node[0], "views": node[1]}
+            node_views = {"title": node[0], "views": node[1], "relationship": "child"}
             if node_views not in nodes:
                 nodes.append(node_views)
         for node in self.comprable_articles:
-            node_views = {"title": node[0], "views": node[1]}
+            node_views = {"title": node[0], "views": node[1], "relationship": "similar"}
             if node_views not in nodes:
                 nodes.append(node_views)
         return nodes
@@ -115,7 +116,7 @@ class Network():
         connections = []
         connections.append({"source": self.article, "target": self.parent_article[0]})
         for node in self.child_articles:
-            connection = {"source": node[0], "target":self.article}
+            connection = {"source": node[0], "target": self.article}
             if connection not in connections:
                 connections.append(connection)
         for node in self.comprable_articles:
