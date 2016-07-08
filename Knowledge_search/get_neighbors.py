@@ -44,9 +44,14 @@ class Network():
                          "query": self.search_term,
                          "fuzziness": "AUTO",
                           } } })
-        return result['hits']['hits'][0]['_source']['title']
-
-
+        best_match = result['hits']['hits'][0]['_source']['title']
+        # if title contains a comma, return the next best match
+        if "," not in best_match:
+            return best_match
+        for hit in result['hits']['hits'][1:]:
+            if "," not in hit['_source']['title']:
+                return hit['_source']['title']
+         
     def get_parent_article(self):
         """
         returns article's the first link 
