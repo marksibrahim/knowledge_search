@@ -28,6 +28,10 @@ def my_form_post():
             comprable=comprable, children=children, node_views=node_views, 
             real_connections=connections)
 
+@app.route('/demo')
+def my_demo():
+    return render_template("demo.html")
+
 if __name__ == '__main__':
 	app.run(host="0.0.0.0", port=5000)
 
