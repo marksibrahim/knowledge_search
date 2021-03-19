@@ -3,7 +3,7 @@ elasticsearch==2.3.0
 Flask==0.11.1
 futures==3.0.5
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2==2.11.3
 -e git+https://github.com/marksibrahim/knowledge_search@3634715d5c7559feb57583c671b6ad41146f3c9b#egg=knowledge_search
 MarkupSafe==0.23
 mwviews==0.0.8
