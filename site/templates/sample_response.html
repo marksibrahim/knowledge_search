@@ -46,13 +46,15 @@
                         <a class="nav-link" href="#bottom"> About<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://compstorylab.org/share/papers/ibrahim2016a/index.html" target="_blank">Research</a>
+                        <a class="nav-link" href="http://compstorylab.org/share/papers/ibrahim2016a/index.html"
+                            target="_blank">Research</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://markibrahim.me/wiki-search/" target="_blank">Deck</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank">&emsp; &emsp; | The database isn't live right now. Enjoy a sample result for "pencil" | </a>
+                        <a class="nav-link" target="_blank">&emsp; &emsp; | The database isn't live right now. Enjoy a
+                            sample result for "pencil" | </a>
                     </li>
                 </ul>
             </div>
@@ -82,7 +84,7 @@
                     <h5 class="title">Knowledge Search</h5>
                     <!--marks bottom for about link in header-->
                     <a name="bottom">
-                    <p>a graph-based search engine powered by Wikipedia</p>
+                        <p>a graph-based search engine powered by Wikipedia</p>
 
                 </div>
                 <!--/.First column-->
@@ -93,7 +95,8 @@
                 <div class="col-md-2 col-md-offset-1">
                     <h5 class="title">Research</h5>
                     <ul>
-                        <li><a href="http://compstorylab.org/share/papers/ibrahim2016a/index.html" target="_blank">Network Topology</a></li>
+                        <li><a href="http://compstorylab.org/share/papers/ibrahim2016a/index.html"
+                                target="_blank">Network Topology</a></li>
                         <li><a href="http://arxiv.org/abs/1605.00309" target="_blank">Paper on arXiv</a></li>
                     </ul>
                 </div>
@@ -105,7 +108,8 @@
                 <div class="col-md-2" style="text-align: center;">
                     <h5 class="title">Github</h5>
                     <ul>
-                        <li ><a href="https://github.com/marksibrahim/knowledge_search" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                        <li><a href="https://github.com/marksibrahim/knowledge_search" target="_blank"><i
+                                    class="fa fa-github" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
                 <!--/.Third column-->
@@ -116,7 +120,8 @@
                 <div class="col-md-2" style="text-align: center;">
                     <h5 class="title">Deck</h5>
                     <ul>
-                        <li><a href="http://markibrahim.me/wiki-search/"><i class="fa fa-play-circle" aria-hidden="true" target="_blank"></i></a></li>
+                        <li><a href="http://markibrahim.me/wiki-search/"><i class="fa fa-play-circle" aria-hidden="true"
+                                    target="_blank"></i></a></li>
                         <li><a href="#!"></a></li>
                         <li><a href="#!"></a></li>
                         <li><a href="#!"></a></li>
@@ -165,49 +170,49 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js')}}"></script>
 
     <!-- D3 Plus -->
-    <script src="http://www.d3plus.org/js/d3.js"></script>
-    <script src="http://www.d3plus.org/js/d3plus.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3plus/1.9.2/d3plus.full.min.js"></script>
 
-<!-- D3 Plus Visualization -->
-<script>
-  var sample_data = [
-    {"title": "alpha", "views": 10},
-    {"title": "beta", "views": 12},
-    {"title": "gamma", "views": 30},
-    {"title": "delta", "views": 26},
-    {"title": "epsilon", "views": 12},
-    {"title": "zeta", "views": 26},
-    {"title": "theta", "views": 11},
-    {"title": "eta", "views": 24}
-  ]
+    <!-- D3 Plus Visualization -->
+    <script>
+        var sample_data = [
+            { "title": "alpha", "views": 10 },
+            { "title": "beta", "views": 12 },
+            { "title": "gamma", "views": 30 },
+            { "title": "delta", "views": 26 },
+            { "title": "epsilon", "views": 12 },
+            { "title": "zeta", "views": 26 },
+            { "title": "theta", "views": 11 },
+            { "title": "eta", "views": 24 }
+        ]
 
-  var real_data = [{"relationship": "parent", "title": "writing implement", "views": "0.0"}, {"relationship": "child", "title": "Pencils", "views": "7.0"}, {"relationship": "child", "title": "Hb pencil", "views": "2.0"}, {"relationship": "child", "title": "Charcoal pencil", "views": "2.0"}, {"relationship": "child", "title": "Colouring pencils", "views": "0.0"}, {"relationship": "child", "title": "Lead pencil", "views": "0.0"}, {"relationship": "similar", "title": "Pencil", "views": "497.0"}, {"relationship": "similar", "title": "Pen", "views": "316.0"}, {"relationship": "similar", "title": "Reed pen", "views": "25.0"}];
+        var real_data = [{ "relationship": "parent", "title": "writing implement", "views": "0.0" }, { "relationship": "child", "title": "Pencils", "views": "7.0" }, { "relationship": "child", "title": "Hb pencil", "views": "2.0" }, { "relationship": "child", "title": "Charcoal pencil", "views": "2.0" }, { "relationship": "child", "title": "Colouring pencils", "views": "0.0" }, { "relationship": "child", "title": "Lead pencil", "views": "0.0" }, { "relationship": "similar", "title": "Pencil", "views": "497.0" }, { "relationship": "similar", "title": "Pen", "views": "316.0" }, { "relationship": "similar", "title": "Reed pen", "views": "25.0" }];
 
-  var real_connections = [{"source": "Pencil", "target": "writing implement"}, {"source": "Pencils", "target": "Pencil"}, {"source": "Hb pencil", "target": "Pencil"}, {"source": "Charcoal pencil", "target": "Pencil"}, {"source": "Colouring pencils", "target": "Pencil"}, {"source": "Lead pencil", "target": "Pencil"}, {"source": "Pen", "target": "writing implement"}, {"source": "Reed pen", "target": "writing implement"}];
+        var real_connections = [{ "source": "Pencil", "target": "writing implement" }, { "source": "Pencils", "target": "Pencil" }, { "source": "Hb pencil", "target": "Pencil" }, { "source": "Charcoal pencil", "target": "Pencil" }, { "source": "Colouring pencils", "target": "Pencil" }, { "source": "Lead pencil", "target": "Pencil" }, { "source": "Pen", "target": "writing implement" }, { "source": "Reed pen", "target": "writing implement" }];
 
-  var connections = [
-    {"source": "alpha", "target": "beta"},
-    {"source": "alpha", "target": "gamma"},
-    {"source": "beta", "target": "delta"},
-    {"source": "beta", "target": "epsilon"},
-    {"source": "zeta", "target": "gamma"},
-    {"source": "theta", "target": "gamma"},
-    {"source": "eta", "target": "gamma"}
-  ]
-  var visualization = d3plus.viz()
-    .container("#viz")
-    .type("network")
-    .data(real_data)
-    .edges(real_connections)
-    .edges({"arrows": 20})
-    .value("views")
-    .color("relationship")
-    .id("title")
-    .background("rgba(0, 0, 255, 0.0)")
-    .tooltip(["title", "views", "relationship"])
-    .zoom({"scroll": false})
-    .draw()
-</script>
+        var connections = [
+            { "source": "alpha", "target": "beta" },
+            { "source": "alpha", "target": "gamma" },
+            { "source": "beta", "target": "delta" },
+            { "source": "beta", "target": "epsilon" },
+            { "source": "zeta", "target": "gamma" },
+            { "source": "theta", "target": "gamma" },
+            { "source": "eta", "target": "gamma" }
+        ]
+        var visualization = d3plus.viz()
+            .container("#viz")
+            .type("network")
+            .data(real_data)
+            .edges(real_connections)
+            .edges({ "arrows": 20 })
+            .value("views")
+            .color("relationship")
+            .id("title")
+            .background("rgba(0, 0, 255, 0.0)")
+            .tooltip(["title", "views", "relationship"])
+            .zoom({ "scroll": false })
+            .draw()
+    </script>
 
 </body>
 
