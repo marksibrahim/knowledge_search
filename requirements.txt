@@ -1,6 +1,6 @@
 click==6.6
 elasticsearch==2.3.0
-Flask==0.11.1
+Flask==2.3.2
 futures==3.0.5
 itsdangerous==0.24
 Jinja2==2.8
