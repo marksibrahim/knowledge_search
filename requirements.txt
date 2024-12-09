@@ -7,7 +7,7 @@ Jinja2==2.8
 -e git+https://github.com/marksibrahim/knowledge_search@3634715d5c7559feb57583c671b6ad41146f3c9b#egg=knowledge_search
 MarkupSafe==0.23
 mwviews==0.0.8
-numpy==1.11.0
+numpy==1.22.0
 pandas==0.18.1
 py==1.4.31
 py2neo==3
